@@ -11,7 +11,7 @@ function ExpenseAmount(props) {
   const updateButtonHandler = (e) => {
     e.preventDefault();
 
-    if (budget.trim()) {
+    if (budget.trim() > 0) {
       props.setMainBudget(budget);
       setViewBudgetForm(false);
     }

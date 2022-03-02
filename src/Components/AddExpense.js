@@ -16,7 +16,7 @@ function AddExpense(props) {
     );
     if (props.mainBudget) {
       if (mixedArray.length === 0) {
-        if (recentExpense.name.trim() && recentExpense.amount.trim()) {
+        if (recentExpense.name.trim() && recentExpense.amount.trim() > 0) {
           props.formSubmit({ ...recentExpense, id: uuidv4() });
           setValues({ name: "", amount: "" });
         }
