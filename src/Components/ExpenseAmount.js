@@ -83,7 +83,7 @@ function ExpenseAmount(props) {
                 className=" bg-blue-800 w-1/4 border-2 rounded-md text-white shadow-lg h-8 hover:bg-blue-600
                 duration-200 ease-in-out "
               >
-                Set
+                save
               </button>
             </div>
           </form>
