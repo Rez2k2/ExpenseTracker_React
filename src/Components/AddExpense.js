@@ -14,7 +14,6 @@ function AddExpense(props) {
     const mixedArray = props.totalExpense.filter(
       (value) => value.name.trim() === recentExpense.name.trim()
     );
-    // props.setSpent(0);
     if (props.mainBudget) {
       if (mixedArray.length === 0) {
         if (recentExpense.name.trim() && recentExpense.amount.trim()) {
