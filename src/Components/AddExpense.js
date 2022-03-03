@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Chart from "./Chart";
 
 function AddExpense(props) {
-  const [Values, setValues] = useState({ name: "", amount: "" });
+  const valueNullName = useRef();
+  const valueNullAmount = useRef();
   const [recentExpense, setRecentExpense] = useState({
     name: "",
     amount: "",
@@ -11,6 +12,7 @@ function AddExpense(props) {
   });
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
     const mixedArray = props.totalExpense.filter(
       (value) => value.name.trim() === recentExpense.name.trim()
     );
@@ -18,7 +20,8 @@ function AddExpense(props) {
       if (mixedArray.length === 0) {
         if (recentExpense.name.trim() && recentExpense.amount.trim() > 0) {
           props.formSubmit({ ...recentExpense, id: uuidv4() });
-          setValues({ name: "", amount: "" });
+          valueNullName.current.value = "";
+          valueNullAmount.current.value = "";
         }
       } else {
         props.click();
@@ -29,21 +32,19 @@ function AddExpense(props) {
   };
 
   const nameChangeHandler = (e) => {
-    setValues({ ...Values, name: e.target.value });
     setRecentExpense({
       ...recentExpense,
       name: e.target.value,
     });
   };
   const costChangeHandler = (e) => {
-    setValues({ ...Values, amount: e.target.value });
     setRecentExpense({
       ...recentExpense,
       amount: e.target.value,
     });
   };
   return (
-    <div className="mt-2 ">
+    <div className="mt-2   ">
       <p className=" text-2xl text-white mb-2">Add Expense</p>
       <div className="md:flex justify-between  h-full">
         <div className=" bg-slate-200 text-black container rounded-md p-4 shadow-md w-full md:w-1/5 h-full md:h-full ">
@@ -54,8 +55,8 @@ function AddExpense(props) {
               onChange={nameChangeHandler}
               className=" border-2 rounded-md mb-2 w-full p-2 "
               required={true}
-              value={Values.name}
               placeholder="Expense Name"
+              ref={valueNullName}
             />
             {/* <p>Cost</p> */}
             <input
@@ -63,8 +64,8 @@ function AddExpense(props) {
               onChange={costChangeHandler}
               className="p-2 border-2 rounded-md mb-2 w-full "
               required={true}
-              value={Values.amount}
               placeholder="Amount"
+              ref={valueNullAmount}
             />
             <button
               className=" block  bg-blue-800 text-white border-2 rounded-md mb-2 w-full shadow-sm hover:bg-blue-600

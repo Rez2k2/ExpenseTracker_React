@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AddExpense from "./Components/AddExpense";
-
+// import Chart from "./Components/Chart";
 import ExpenseAmount from "./Components/ExpenseAmount";
 import ExpenseItems from "./Components/ExpenseItems";
 import NavBar from "./Components/NavBar";
