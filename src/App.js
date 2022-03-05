@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AddExpense from "./Components/AddExpense";
-// import Chart from "./Components/Chart";
+import Chart from "./Components/Chart";
 import ExpenseAmount from "./Components/ExpenseAmount";
 import ExpenseItems from "./Components/ExpenseItems";
 import NavBar from "./Components/NavBar";
@@ -118,23 +118,27 @@ function App() {
           content={"Please set the budget before adding the expense"}
         ></Modal>
 
-        <AddExpense
-          formSubmit={onFormSubmit}
-          mainBudget={mainBudget}
-          chartLabelArray={chartLabelArray}
-          chartValueArray={chartValueArray}
-          totalExpense={totalExpense}
-          searchDisplay={searchDisplay}
-          click={toggleModal}
-          clickBudget={toggleModalBudget}
-        />
-        {/* {searchDisplay && (
-          <Chart
+        <div className="md:flex justify-between  h-full  mt-2">
+          <AddExpense
+            formSubmit={onFormSubmit}
+            mainBudget={mainBudget}
             chartLabelArray={chartLabelArray}
             chartValueArray={chartValueArray}
             totalExpense={totalExpense}
+            searchDisplay={searchDisplay}
+            click={toggleModal}
+            clickBudget={toggleModalBudget}
           />
-        )} */}
+          <div className=" w-full md:w-1/2  mt-4 md:mt-10 h-fit ">
+            {searchDisplay && (
+              <Chart
+                chartLabelArray={chartLabelArray}
+                chartValueArray={chartValueArray}
+                totalExpense={totalExpense}
+              />
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
